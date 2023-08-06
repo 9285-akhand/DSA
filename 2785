@@ -1,0 +1,35 @@
+**DAY 1**
+**Sort Vowels in a String**
+
+class Solution {
+public:
+    string sortVowels(string s) {
+        vector<char>ans;
+        vector<int>use;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s[i]=='A' || s[i]=='E' || s[i]=='I' || s[i]=='O' || s[i]=='U' || s[i]=='a' || s[i]=='e' || s[i]=='i' || s[i]=='o' || s[i]=='u')
+            {
+                ans.push_back(s[i]);
+                use.push_back(i);
+        }
+        }
+        if(ans.empty())
+        return s;
+        sort(ans.begin(),ans.end());
+        reverse(ans.begin(),ans.end());
+        reverse(use.begin(),use.end());
+        for(int i=0;i<s.size();i++)
+        {
+            if(ans.empty())
+            return s;
+            if(i==use[use.size()-1])
+            {
+            s[i]=ans[ans.size()-1];
+            ans.pop_back();
+            use.pop_back();
+            }
+        }
+        return s;
+    }
+};
