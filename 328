@@ -1,0 +1,44 @@
+DAY 4
+Odd Even Linked List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        vector<int>ans;
+        ListNode* temp1=head,*temp2=head,*temp3=head;
+        int i=1;
+        while(temp1!=NULL)
+        {
+            if(i%2==1)
+            ans.push_back(temp1->val);
+            i++;
+            temp1=temp1->next;
+        }
+        i=1;
+        while(temp2!=NULL)
+        {
+            if(i%2==0)
+            ans.push_back(temp2->val);
+            i++;
+            temp2=temp2->next;
+        }
+        i=0;
+        while(temp3!=NULL)
+        {
+            temp3->val=ans[i];
+            i++;
+            temp3=temp3->next;
+        }
+        return head;
+    }
+};
