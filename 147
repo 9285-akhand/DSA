@@ -1,0 +1,24 @@
+DAY 6
+Insertion Sort List
+
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        ListNode* t=head,*q=head;
+        vector<int>ans;
+        while(t!=NULL)
+        {
+            ans.push_back(t->val);
+            t=t->next;
+        }
+        sort(ans.begin(),ans.end());
+        int i=0;
+        while(q!=NULL)
+        {
+            q->val=ans[i];
+            i++;
+            q=q->next;
+        }
+        return head;
+    }
+};
