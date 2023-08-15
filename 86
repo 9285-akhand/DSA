@@ -1,0 +1,32 @@
+DAY 9
+Partition List
+
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        vector<int>z;
+        ListNode* t=head;
+        while(t!=NULL)
+        {
+            if(t->val<x)
+            z.push_back(t->val);
+            t=t->next;
+        }
+        t=head;
+        while(t!=NULL)
+        {
+            if(t->val>=x)
+            z.push_back(t->val);
+            t=t->next;
+        }
+        t=head;
+        reverse(z.begin(),z.end());
+        while(t!=NULL)
+        {
+           t->val=z[z.size()-1];
+           z.pop_back();
+           t=t->next;
+        }
+        return head;
+    }
+};
