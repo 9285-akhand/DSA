@@ -1,0 +1,40 @@
+DAY 10
+Print Words Vertically
+
+class Solution {
+public:
+    vector<string> printVertically(string s) {
+        vector<string>v,ans;
+    string word;
+    int l=0;
+    stringstream iss(s);
+    while (iss >> word)
+    {
+        v.push_back(word);
+        if(word.size()>l)
+            l=word.size();
+    }
+    word="";
+    for(int i=0;i<l;i++)
+    {
+        for(int j=0;j<v.size();j++)
+        {
+            if(i<v[j].size())
+            word+=(v[j][i]);
+            else
+            word+=" ";
+        }
+        string n=word;
+        reverse(n.begin(),n.end());
+        int k=0;
+        while(n[k]==' ')
+        k++;
+        n=n.substr(k);
+        reverse(n.begin(),n.end());
+        word=n;
+ans.push_back(word);
+word="";
+    }
+    return ans;
+    }
+};
