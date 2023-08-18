@@ -1,0 +1,25 @@
+DAY 12
+Minimum Distance Between BST Nodes
+
+class Solution {
+public:
+vector<int>ans;
+void preOrder(TreeNode* root)
+{
+    if(root==NULL)return;
+    ans.push_back(root->val);
+    preOrder(root->left);
+    preOrder(root->right);
+}
+    int minDiffInBST(TreeNode* root) {
+        preOrder(root);
+        sort(ans.begin(),ans.end());
+        int a=ans[1]-ans[0];
+        for(int i=2;i<ans.size();i++)
+        {
+            if(ans[i]-ans[i-1]<a)
+            a=ans[i]-ans[i-1];
+        }
+        return a;
+    }
+};
