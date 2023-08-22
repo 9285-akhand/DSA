@@ -1,0 +1,24 @@
+451
+Sort Characters By Frequency
+
+class Solution {
+public:
+    string frequencySort(string s) {
+        string ans="";
+        map<char,int>m;
+        multimap<int,char,greater<int>>n;
+        for(int i=0;i<s.size();i++)
+        m[s[i]]++;
+        for(auto x:m)n.insert(pair<int,char>(x.second,x.first));
+for(auto y:n)
+{
+    int h=0;
+    while(h<y.first)
+    {
+ans+=(y.second);
+h++;
+    }
+}
+return ans;
+    }
+};
