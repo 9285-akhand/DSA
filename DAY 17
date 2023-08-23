@@ -1,0 +1,21 @@
+1753
+Maximum Score From Removing Stones
+
+class Solution {
+public:
+    int maximumScore(int a, int b, int c) {
+  priority_queue<pair<int, char>> max_heap;
+            max_heap.push({a,'a'});
+            max_heap.push({b,'b'});
+            max_heap.push({c,'c'});
+        int res=0;
+        while (max_heap.size() >= 2) {
+            auto [freq1, char1] = max_heap.top(); max_heap.pop();
+            auto [freq2, char2] = max_heap.top(); max_heap.pop();
+            res++;
+            if (--freq1 > 0) max_heap.push({freq1, char1});
+            if (--freq2 > 0) max_heap.push({freq2, char2});
+        }
+        return res;
+    }
+};
