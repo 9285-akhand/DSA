@@ -1,0 +1,28 @@
+2483
+Minimum Penalty for a Shop
+
+class Solution {
+public:
+    int bestClosingTime(string customers) {
+        int suffixY=0,prefixN=0,ans=0;
+        multimap<int,int>m;
+        for(int i=0;i<customers.size();i++)
+        {
+            if(customers[i]=='Y')suffixY++;
+        }
+        m.insert(pair<int,int>(suffixY,0));
+        for(int j=0;j<customers.size();j++)
+        {
+            if(customers[j]=='Y')--suffixY;
+            else ++prefixN;
+            int p=suffixY+prefixN;
+            m.insert(pair<int,int>(p,j+1));
+        }
+        for(auto x:m)
+        {
+            ans=x.second;
+            break;
+        }
+        return ans;
+    }
+};
