@@ -1,0 +1,32 @@
+92
+Reverse Linked List II
+
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        ListNode* temp=head;
+        int c=0;
+        while(c+1!=left)
+        {
+            temp=temp->next;
+            c++;
+        }
+        ListNode* t=temp;
+        vector<int>v;
+        while(c!=right)
+        {
+            v.push_back(temp->val);
+            temp=temp->next;
+            c++;
+        }
+        reverse(v.begin(),v.end());
+        int k=0;
+        while(k!=(right-left+1))
+        {
+            t->val=v[k];
+            t=t->next;
+            k++;
+        }
+        return head;
+    }
+};
