@@ -1,0 +1,30 @@
+501
+Find Mode in Binary Search Tree
+
+class Solution {
+public:  
+map<int,int>m;
+void Preorder(TreeNode* root)
+{
+if(root==NULL)return;
+m[root->val]++;
+Preorder(root->left);
+Preorder(root->right);
+}
+    vector<int> findMode(TreeNode* root) {
+        vector<int>ans,an;
+        int k=1;
+        Preorder(root);
+        multimap<int,int,greater<int>>mm;
+        for(auto x:m)
+            mm.insert(pair<int,int>(x.second,x.first));
+        auto x=mm.begin();
+        int s=x->first;
+        for(auto x:mm){
+                 if(x.first==s)ans.push_back(x.second);
+                 else
+                 break;
+        }
+return ans;
+    }
+};
