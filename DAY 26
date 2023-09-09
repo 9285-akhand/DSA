@@ -1,0 +1,25 @@
+113
+Path Sum II
+
+class Solution {
+public:
+vector<vector<int>>ans;
+    void pathSum1(TreeNode* root, int targetSum,vector<int>v) {
+        if(root==NULL)return;
+        v.push_back(root->val);
+        targetSum-=root->val;
+        if(root->left==NULL && root->right==NULL){
+            if(targetSum==0)
+ans.push_back(v);
+v.pop_back();
+        }
+        pathSum1(root->left,targetSum,v);
+        pathSum1(root->right,targetSum,v);
+    }
+    vector<vector<int>> pathSum(TreeNode* root, int targetSum)
+    {
+        vector<int>v;
+        pathSum1(root,targetSum,v);
+        return ans;
+    } 
+};
