@@ -1,0 +1,35 @@
+1282
+Group the People Given the Group Size They Belong To
+
+class Solution {
+public:
+    vector<vector<int>> groupThePeople(vector<int>& groupSizes) {
+        multimap<int,int>mm;
+        for(int i=0;i<groupSizes.size();i++)
+        mm.insert(pair<int,int>(groupSizes[i],i));
+        vector<vector<int>>ans;
+        vector<int>group;
+        int k=0;
+        sort(groupSizes.begin(),groupSizes.end());
+        for(auto x:mm)
+        {
+            if(k==0)
+            {
+                group.push_back(x.second);
+                k++;
+                continue;
+            }
+            if(x.first==groupSizes[k-1] && group.size()<x.first)
+                group.push_back(x.second);
+            else
+            {
+                ans.push_back(group);
+                group.clear();
+                group.push_back(x.second);
+            }
+            k++;
+        }
+        ans.push_back(group);
+        return ans;
+    }
+};
