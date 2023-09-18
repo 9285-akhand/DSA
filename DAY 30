@@ -1,0 +1,32 @@
+1337
+The K Weakest Rows in a Matrix
+
+class Solution {
+public:
+    vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+        vector<int>ans;
+        int m=mat.size();
+        int n=mat[0].size();
+        map<int,int>ma;
+        for(int i=0;i<m;i++)
+        {
+            int j=0;
+            while(j<n && mat[i][j]==1)
+            {
+                ma[i]++;
+                j++;
+            }
+            if(j==0)ma[i]=0;
+        }
+        multimap<int,int>mm;
+        for(auto x:ma)
+        mm.insert(pair<int,int>(x.second,x.first));
+        for(auto x:mm)
+        {
+            if(k==0)break;
+            k--;
+            ans.push_back(x.second);
+        }
+        return ans;
+    }
+};
