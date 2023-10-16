@@ -1,0 +1,24 @@
+658
+Find K Closest Elements
+
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        vector<int>ans;
+        multimap<int,int>m;
+        multimap<int,int>mm;
+        for(int i=0;i<arr.size();i++)
+           m.insert(pair<int,int>(arr[i],abs(arr[i]-x)));
+        for(auto y:m)
+        mm.insert(pair<int,int>(y.second,y.first));
+        for(auto y:mm)
+        {
+        if(k==0)
+        break;
+        ans.push_back(y.second);
+        k--;
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
