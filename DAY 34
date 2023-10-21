@@ -1,0 +1,21 @@
+2130
+Maximum Twin Sum of a Linked List
+
+class Solution {
+public:
+    int pairSum(ListNode* head) {
+        vector<int>v;
+        while(head!=NULL)
+        {
+            v.push_back(head->val);
+            head=head->next;
+        }
+        int max=v[0]+v[v.size()-1];
+        for(int i=1;i<v.size()/2;i++)
+        {
+            if(v[i]+v[v.size()-1-i]>max)
+            max=v[i]+v[v.size()-1-i];
+        }
+        return max;
+    }
+};
