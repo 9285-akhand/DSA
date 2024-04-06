@@ -1,0 +1,35 @@
+1249. Minimum Remove to Make Valid Parentheses
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        stack<char>st;a
+        string ans="";
+        map<int,int>index,index1;
+        for(int i=0;i<s.size();i++)
+        {
+            if(s[i]=='(')
+            {
+                st.push(s[i]);
+                index1[i]=1;
+            }
+            else if(s[i]==')')
+                {
+                  if(!st.empty())
+                  {
+                    index1.erase(prev(index1.end()));
+                    st.pop();
+                  }
+                    else
+                        index[i]=1;
+                }
+        }
+        for(int i=0;i<s.size();i++)
+        {
+            if(index.find(i)!=index.end() || index1.find(i)!=index1.end())
+            continue;
+            else
+            ans+=s[i];
+        }
+        return ans;
+        }
+};
